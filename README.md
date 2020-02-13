@@ -1,5 +1,5 @@
 # Risi Bot
 
-I'm creting this bot just for fun.
+I'm creating this bot just for fun.
 
 In Progress . . .
