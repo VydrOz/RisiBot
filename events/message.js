@@ -4,8 +4,8 @@ exports.run = (client, msg) => {
 	    const prefix = client.guildconfs.get(msg.guild.id).prefix;
 	if (!msg.content.startsWith(prefix)) return;
     
-    var command = msg.content.split(' ')[0].slice(prefix.length).toLowerCase();
-	var args = msg.content.split(' ').slice(1);
+	const args = msg.content.slice(prefix.length).trim().split(' ');
+	const command = args.shift().toLowerCase();
 	let cmd;
 	if (client.commands.has(command)) {
 	    cmd = client.commands.get(command);
