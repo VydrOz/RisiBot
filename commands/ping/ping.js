@@ -1,8 +1,7 @@
 const Discord = require('discord.js');
 
 exports.run = async(client, msg) => {
-    const m = await message.channel.send("Ping?");
-    m.edit(`Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(bot.ping)}ms`);
+    await msg.channel.send("```API Latency: " + (Math.round(client.ping)) + "ms```");
 };
 
 exports.conf = {

@@ -2,23 +2,30 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const token = require('./config.json').token;
 const fs = require('fs'); // Require fs to go throw all folder and files
-const PersistentCollection = require('djs-collection-persistent');
-client.guildconfs = new PersistentCollection({ name: 'guildsettings' });
+const Enmap = require('enmap');
+client.guildconfs = new Enmap({ 
+  name: 'guildsettings',
+  fetchAll: false,
+  autoFetch: true,
+  cloneLevel: 'deep'
+});
 
+//-------init events
 fs.readdir('./events/', (err, files) => {
 	if (err) return console.error(err);
 	files.forEach(file => {
-		let eventFunction = require(`./events/${file}`);
+    const eventFunction = require(`./events/${file}`);
+    if (eventFunction.disabled) return;
 		let eventName = file.split('.')[0];
 		client.on(eventName, (...args) => eventFunction.run(client, ...args));
 	});
 });
 
+//-------init commands
 client.commands = new Discord.Collection(); // Collection for all commands
 client.aliases = new Discord.Collection(); // Collection for all aliases of every command
-const modules = ['Test']; // This will be the list of the names of all modules (folder) your bot owns
-
-modules.forEach(c => {
+const modules = ['ping']; // This will be the list of the names of all modules (folder) your bot owns
+modules.forEach(c => {  
   fs.readdir(`./commands/${c}/`, (err, files) => { // Here we go through all folders (modules)
     if (err) throw err; // If there is error, throw an error in the console
     console.log(`[Commandlogs] Loaded ${files.length} commands of module ${c}`); // When commands of a module are successfully loaded, you can see it in the console
@@ -32,4 +39,5 @@ modules.forEach(c => {
   });
 });
 
+//login
 client.login(token);
