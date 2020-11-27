@@ -24,7 +24,7 @@ fs.readdir('./events/', (err, files) => {
 //-------init commands
 client.commands = new Discord.Collection(); // Collection for all commands
 client.aliases = new Discord.Collection(); // Collection for all aliases of every command
-const modules = ['ping']; // This will be the list of the names of all modules (folder) your bot owns
+const modules = ['test']; // This will be the list of the names of all modules (folder) your bot owns
 modules.forEach(c => {  
   fs.readdir(`./commands/${c}/`, (err, files) => { // Here we go through all folders (modules)
     if (err) throw err; // If there is error, throw an error in the console
