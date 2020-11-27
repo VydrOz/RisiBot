@@ -14,7 +14,8 @@
 
 [![better-sqlite3][]][better-sqlite3-link] 
 [![discordjs][]][discordjs-link] 
-[![enmap][]][enmap-link] 
+[![enmap][]][enmap-link]
+[![node-fetch][]][node-fetch-link]
 
 ### Inspired by
 
@@ -33,6 +34,9 @@
 
 [better-sqlite3]: https://img.shields.io/github/package-json/dependency-version/vydro/risibot/better-sqlite3
 [better-sqlite3-link]: https://www.npmjs.com/package/better-sqlite3
+
+[node-fetch]: https://img.shields.io/github/package-json/dependency-version/vydro/risibot/node-fetch
+[node-fetch-link]: https://www.npmjs.com/package/node-fetch
 
 
 [//]: #  (documents links)
