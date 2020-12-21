@@ -1,7 +1,7 @@
 {
   "name": "risibot",
   "version": "0.0.2",
-  "description": "I'm creating this bot just for fun.",
+  "description": "I created this bot to practice programming",
   "main": "index.js",
   "engines": {
     "node": ">=12.0.0"
