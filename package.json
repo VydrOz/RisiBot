@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Vydro/RisiBot.git"
+    "url": "git+https://github.com/VydrOz/RisiBot.git"
   },
   "author": "Vydro",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Vydro/RisiBot/issues"
+    "url": "https://github.com/VydrOz/RisiBot/issues"
   },
-  "homepage": "https://github.com/Vydro/RisiBot#readme",
+  "homepage": "https://github.com/VydrOz/RisiBot#readme",
   "keywords": [],
   "dependencies": {
     "better-sqlite3": "^7.1.1",
