@@ -1,7 +1,7 @@
 {
   "name": "risibot",
   "version": "0.0.2",
-  "description": "I created this bot to practice programming",
+  "description": "🤖 My personal discord bot to discover how does it work",
   "main": "index.js",
   "engines": {
     "node": ">=12.0.0"
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/VydrOz/RisiBot.git"
   },
-  "author": "Vydro",
+  "author": "Vydr'Oz",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/VydrOz/RisiBot/issues"
@@ -18,9 +18,10 @@
   "homepage": "https://github.com/VydrOz/RisiBot#readme",
   "keywords": [],
   "dependencies": {
-    "better-sqlite3": "^7.1.1",
+    "brawlstars.js": "^1.0.8",
     "discord.js": "^12.5.1",
-    "enmap": "^5.8.2",
+    "discord.js-commando": "^0.12.2",
+    "mongodb": "^3.6.4",
     "node-fetch": "^2.6.1"
   },
   "scripts": {

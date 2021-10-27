@@ -1,19 +1,28 @@
 const Discord = require('discord.js');
+const RisiCommand = require('../RisiCommand.js');
 
-exports.run = async(client, msg, args) => {
-	let embed = new Discord.MessageEmbed()
-		.setColor(msg.guild.members.cache.get(client.user.id).displayColor) //display color bot
-		.setTitle('[TEST Command]')
-		.setDescription(`Discord Latency: \`${(Math.round(client.ws.ping))}ms\``);
-    await msg.channel.send(embed);
-};
+module.exports = class pingTestCommand extends RisiCommand {
+    constructor(client) {
+        super(client, {
+            name: 'pong',
+            group: 'test',
+            memberName: 'pong',
+            description: 'Ping Pong',
+            format: 'pong',
+            aliases: ['pong'],
+            examples: ['pong'],
+            clientpermissions: ['SEND_MESSAGES'],
+            userpermissions: [],
+            shortDescription: 'Test',
+            dashboardsettings: true
+        });
+    }
 
-exports.conf = {
-	enabled: true,
-	guildOnly: false,
-    aliases: ['ping']
-};
-exports.help = {
-	name: 'ping',
-	description: 'Gives you the bot latency',
+    async run(msg) {
+        let embed = new Discord.MessageEmbed()
+			.setColor(msg.guild.members.cache.get(client.user.id).displayColor) //display color bot
+			.setTitle('[TEST Command]')
+			.setDescription(`Discord Latency: \`${(Math.round(client.ws.ping))}ms\``);
+    	return msg.channel.send({ embed });
+	}
 };

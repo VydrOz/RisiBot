@@ -1,0 +1,15 @@
+{ 
+    "prefix": "r!",
+    "token": "discord bot token",
+    "brawlstars": {
+        "token": "api token",
+        "asset": "./assets/brawlstars"
+    },
+    "__comment__": "Im using MongoDb",
+    "db": { 
+        "user": "user name",
+        "password" : "pass",
+        "host": "host",
+        "name": "db name"
+    }
+} 

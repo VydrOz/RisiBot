@@ -1,43 +1,62 @@
-const Discord = require('discord.js');
-const client = new Discord.Client();
-const token = require('./config.json').token;
-const fs = require('fs'); // Require fs to go throw all folder and files
-const Enmap = require('enmap');
-client.guildconfs = new Enmap({ 
-  name: 'guildsettings',
-  fetchAll: false,
-  autoFetch: true,
-  cloneLevel: 'deep'
+const Commando = require('discord.js-commando');
+const fs = require('fs');
+const path = require('path');
+
+//const Discord = require('discord.js');
+const settings = require('./settings.json');
+const RisibotSettingsProvider = require('./utils/SettingsProvider');
+
+if (!settings.token) {
+  console.error('You forgot to enter your Discord super secret token! You can get this token from the following page: https://discordapp.com/developers/applications/');
+  process.exit(42);
+}
+
+if (!settings.prefix) {
+  console.error('You can\'t start the bot without setting a standard prefix');
+  process.exit(42);
+}
+
+const client = global.client = new Commando.Client({
+  commandPrefix: settings.prefix,
+  owner: '358653201513447465',
+  presence: {
+    activity: {
+      name: `https://www.youtube.com/watch?v=W5BxWMD8f_w`,
+      type: 0
+    }
+  }
 });
 
-//-------init events
+/* Custom Client Properties */
+client.ready = false;
+client.settings = settings;
+
+/* Events */
 fs.readdir('./events/', (err, files) => {
-	if (err) return console.error(err);
-	files.forEach(file => {
+  if (err) return console.error(err);
+  files.forEach((file) => {
     const eventFunction = require(`./events/${file}`);
     if (eventFunction.disabled) return;
-		let eventName = file.split('.')[0];
-		client.on(eventName, (...args) => eventFunction.run(client, ...args));
-	});
-});
-
-//-------init commands
-client.commands = new Discord.Collection(); // Collection for all commands
-client.aliases = new Discord.Collection(); // Collection for all aliases of every command
-const modules = ['test']; // This will be the list of the names of all modules (folder) your bot owns
-modules.forEach(c => {  
-  fs.readdir(`./commands/${c}/`, (err, files) => { // Here we go through all folders (modules)
-    if (err) throw err; // If there is error, throw an error in the console
-    console.log(`[Commandlogs] Loaded ${files.length} commands of module ${c}`); // When commands of a module are successfully loaded, you can see it in the console
-    files.forEach(f => { // Now we go through all files of a folder (module)
-      const props = require(`./commands/${c}/${f}`); // Location of the current command file
-      client.commands.set(props.help.name, props); // Now we add the commmand in the client.commands Collection which we defined in previous code
-      props.conf.aliases.forEach(alias => { // It could be that the command has aliases, so we go through them too
-        client.aliases.set(alias, props.name); // If we find one, we add it to the client.aliases Collection
-      });
-    });
+    const event = eventFunction.event || file.split('.')[0];
+    const emitter = (typeof eventFunction.emitter === 'string' ? client[eventFunction.emitter] : eventFunction.emitter) || client;
+    const { once } = eventFunction;
+    try {
+      emitter[once ? 'once' : 'on'](event, (...args) => eventFunction.run(...args));
+    }
+    catch (error) {
+      console.error(error.stack);
+    }
   });
 });
 
-//login
-client.login(token);
+client.setProvider(new RisibotSettingsProvider(settings));
+client.login(settings.token);
+
+/* Commands */
+client.registry
+  .registerDefaults()
+	.registerGroups([
+    ['searches', 'Searches'],
+		['test', 'Test']
+	])
+	.registerCommandsIn(path.join(__dirname, 'commands'));
