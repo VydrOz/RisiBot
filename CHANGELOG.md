@@ -12,12 +12,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Commands :
-    > `api {param}` testing a [basic api](https://jsonplaceholder.typicode.com/todos/1) call and multiple arguments handling
-    > `bs {profile} {playerTag}` find brawlstars player data (wins,trophies, etc.)
+    - `api {param}` testing a [basic api](https://jsonplaceholder.typicode.com/todos/1) call and multiple arguments handling
+    - `bs {profile} {playerTag}` find brawlstars player data (wins,trophies, etc.)
 - Modules :
-    > [node-fetch](https://www.npmjs.com/package/node-fetch)
-    > [discord.js-commando 0.12.2](https://www.npmjs.com/package/discord.js-commando)
-    > [brawlstars 1.0.8](https://www.npmjs.com/package/brawlstars)
+    - [node-fetch](https://www.npmjs.com/package/node-fetch)
+    - [discord.js-commando 0.12.2](https://www.npmjs.com/package/discord.js-commando)
+    - [brawlstars 1.0.8](https://www.npmjs.com/package/brawlstars)
 
 ### Changed
 
