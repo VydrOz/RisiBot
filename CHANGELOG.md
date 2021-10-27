@@ -17,7 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Modules :
     - [node-fetch](https://www.npmjs.com/package/node-fetch)
     - [discord.js-commando 0.12.2](https://www.npmjs.com/package/discord.js-commando)
-    - [brawlstars 1.0.8](https://www.npmjs.com/package/brawlstars)
+    - [brawlstars 1.0.8](https://www.npmjs.com/package/brawlstars.js)
 
 ### Changed
 
