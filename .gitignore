@@ -1,7 +1,5 @@
 node_modules
-config.json
+settings.json
 data
-enmap.sqlite
-db.sqlite
 defaultsettings.json
 package-lock.json
